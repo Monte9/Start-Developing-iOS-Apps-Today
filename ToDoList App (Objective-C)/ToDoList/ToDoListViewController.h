@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ToDoListViewController.h
 //  ToDoList
 //
 //  Created by Monte's Pro 13" on 3/21/16.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface ToDoListViewController : UITableViewController
 
 @end
-
