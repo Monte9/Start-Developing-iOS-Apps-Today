@@ -38,7 +38,11 @@ class ToDoListViewController: UITableViewController {
     }
     
     @IBAction func unwindToList (segue: UIStoryboardSegue) {
+        var source = segue.sourceViewController as! AddToDoItemViewController
+        var item: ToDoItem = source.toDoItem
         
+        toDoItems.addObject(item)
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -71,6 +75,17 @@ class ToDoListViewController: UITableViewController {
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        let tappedItem = toDoItems.objectAtIndex(indexPath.row) as! ToDoItem
+        if tappedItem.completed == true {
+            tappedItem.completed = false
+        } else {
+            tappedItem.completed = true
+        }
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
     }
 
     /*
